@@ -31,7 +31,7 @@ tracker_store:
     db: rasa_zh
     username: rasa
     password: rasa
-    auth_source: rasa
+    auth_source: rasa_zh
 
 # Event broker which all conversation events should be streamed to.
 # https://rasa.com/docs/rasa/event-brokers
