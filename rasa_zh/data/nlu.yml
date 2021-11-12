@@ -12,6 +12,7 @@ nlu:
     - 您好
     - 歡迎
     - hello
+    - 你好啊
 - intent: mood_great
   examples: |
     - 完美的
@@ -36,12 +37,19 @@ nlu:
     - 我想要買一些菜
     - 想要訂購
     - 我想訂一些地瓜
+    - 我想買白菜
+    - 我想要訂購東西
+    - 我想要訂東西
 - intent: supply_contact_info
   examples: |
     - 我叫[李明華](name), 我的電子信箱是 [hua@gmail.com](email)
     - 我是王小明，我的email是example@gmail.com
     - 我的電話是[ 0912345678](phone number)
     - 我的手機是[0912345678](phone number)
+    - 我的email是[123](phone number)@gmail.com
+    - 我的電話是[091112324](phone number)
+    - 我的email是
+    - 我的電話是
 - intent: order_detail
   examples: |
     - 你要買多少公斤？
@@ -49,6 +57,8 @@ nlu:
     - 您需要幾份白菜？
     - 您需要多少份？
     - 您需要訂購幾份？
+    - 您需要幾公斤的白菜？
+    - 您需要多少份的白菜？
 - intent: order_confirm
   examples: |
     - 您的訂單已被記錄。謝謝你
@@ -59,6 +69,8 @@ nlu:
     - 收到訂單，感謝您的支持。
     - 您的訂單已被確認，謝謝您。
     - 訂單已送出並確認，謝謝您的購買。
+    - 訂購完成
+    - 已收到您的訂單，感謝您的支持。
 - intent: goodbye
   examples: |
     - 再見
