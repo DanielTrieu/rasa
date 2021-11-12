@@ -1,1 +1,4 @@
 rasa_venv
+rasa_en/core
+test/core
+rasa_zh/core
