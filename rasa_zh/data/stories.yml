@@ -1,0 +1,41 @@
+version: "2.0"
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_ask_for_help
+  - intent: order
+  - action: utter_ask_for_contact_info
+  - intent: supply_contact_info
+    entities:
+    - name: ''
+    - email: ''
+  - action: utter_acknowledge_provided_info
+  - action: utter_ask_for_order_detail
+  - intent: order_detail
+  - action: utter_order_confirm
+  - action: utter_ask_for_more_demand
+  - intent: deny
+  - action: utter_thank_for_ordering
+  - action: utter_goodbye
+- story: Story from Conversation ID a84fb72b752c47ed85b9937466702930
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_ask_for_help
+  - intent: mood_great
+  - action: utter_ask_for_help
+  - intent: order
+  - action: utter_ask_for_contact_info
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: action_default_fallback
+  - intent: order
+  - action: utter_ask_for_contact_info
+  - intent: supply_contact_info
+  - intent: order
+  - action: utter_ask_for_contact_info

@@ -1,0 +1,36 @@
+version: "2.0"
+
+rules:
+
+- rule: activate selling form
+  steps:
+    - intent: request_selling   # intent that triggers form activation
+    - action: selling_form     # run the form
+    - active_loop: selling_form # this form is active
+
+- rule: submit selling form
+  condition:
+  - active_loop: selling_form   # this form must be active
+  steps:
+    - action: selling_form      # run the form
+    - active_loop: null            # the form is no longer active because it has been filled
+    - action: utter_submit_sell         # action to take after the form is complete
+    - action: utter_slots_values_sell   # action to take after the form is complete
+
+
+- rule: activate buying form
+  steps:
+    - intent: request_buying   # intent that triggers form activation
+    - action: buying_form     # run the form
+    - active_loop: buying_form # this form is active
+
+- rule: submit buying form
+  condition:
+  - active_loop: buying_form   # this form must be active
+  steps:
+    - action: buying_form      # run the form
+    - active_loop: null            # the form is no longer active because it has been filled
+    - action: utter_submit_buy         # action to take after the form is complete
+    - action: utter_slots_values_buy   # action to take after the form is complete
+
+

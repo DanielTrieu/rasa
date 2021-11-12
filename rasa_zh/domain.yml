@@ -1,0 +1,64 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- order:
+    use_entities: true
+- supply_contact_info:
+    use_entities: true
+- order_detail:
+    use_entities: true
+- order_confirm:
+    use_entities: true
+entities:
+- name
+- email
+- phone number
+slots:
+  name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  email:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: 你好嗎
+  - text: 我可以幫你什麼嗎
+  utter_ask_for_help:
+  - text: 我可以幫你嗎？
+  utter_ask_for_contact_info:
+  - text: 你能提供你的聯繫方式嗎？
+  utter_ask_for_order_detail:
+  - text: 你要買多少公斤？
+  utter_order_confirm:
+  - text: 您的訂單已被記錄。謝謝你
+  utter_ask_for_more_demand:
+  - text: 你還想買別的嗎？
+  utter_thank_for_ordering:
+  - text: 感謝訂購.
+  utter_goodbye:
+  - text: 再見
+  utter_acknowledge_provided_info:
+  - text: 感謝您提供您的信息！
+  - text: 謝謝您的訊息！
+actions: []
+forms: {}
+e2e_actions: []

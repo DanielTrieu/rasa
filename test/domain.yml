@@ -1,0 +1,167 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- request_selling:
+    use_entities: true
+- request_buying:
+    use_entities: true
+- inform:
+    use_entities: true
+entities:
+- product
+- number
+
+slots:
+  sell_product:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  sell_quantity:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+
+  sell_price:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+
+  self_made_product:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+
+  buy_product:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  buy_quantity:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+
+  buy_price:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+
+
+
+
+
+responses:
+
+  utter_greet:
+  - text: Hi! What can I do for you?
+  utter_goodbye:
+  - text: Bye
+
+  utter_ask_sell_product:
+  - text: which product you want to sell?
+  utter_ask_sell_quantity:
+  - text: How many kg you want to sell?
+
+  utter_ask_sell_price:
+  - text: What price per kg do you want sell?
+
+  utter_ask_self_made_product:
+  - text: are you made this product?
+
+
+  utter_submit_sell:
+  - text: All done!
+  utter_slots_values_sell:
+  - custom:
+      product: '{sell_product}'
+      quantity: '{sell_quantity}'
+      price: '{sell_price}'
+      self_made_product: '{self_made_product}'
+
+
+  utter_ask_buy_product:
+    - text: which product you want to buy?
+  utter_ask_buy_quantity:
+    - text: How many kg you want to buy?
+
+  utter_ask_buy_price:
+    - text: What maximum price per kg do you want buy?
+
+
+  utter_submit_buy:
+    - text: All done!
+  utter_slots_values_buy:
+    - custom:
+        product: '{buy_product}'
+        quantity: '{buy_quantity}'
+        price: '{buy_price}'
+
+
+
+actions: []
+forms:
+  selling_form:
+    required_slots:
+      sell_product:
+      - entity: product
+        type: from_entity
+      sell_quantity:
+      - entity: number
+        type: from_entity
+
+      sell_price:
+      - entity: number
+        type: from_entity
+
+      self_made_product:
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+
+  buying_form:
+    required_slots:
+      buy_product:
+      - entity: product
+        type: from_entity
+      buy_quantity:
+      - entity: number
+        type: from_entity
+
+      buy_price:
+      - entity: number
+        type: from_entity
+
+
+
+
+
+e2e_actions: []
