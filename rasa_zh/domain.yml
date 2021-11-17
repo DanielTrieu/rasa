@@ -23,10 +23,18 @@ intents:
     use_entities: true
 - order_confirm:
     use_entities: true
+- request_selling:
+    use_entities: true
+- request_buying:
+    use_entities: true
+- restart:
+    use_entities: true
 entities:
 - name
 - email
-- phone number
+- phone_number
+- product
+- number
 slots:
   name:
     type: rasa.shared.core.slots.TextSlot
@@ -38,6 +46,59 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
+  phone_number:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  1_sell_product:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  2_sell_quantity:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+  3_sell_price:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+  4_self_made:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  1_buy_product:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  2_buy_quantity:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+  3_buy_price:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
 responses:
   utter_greet:
   - text: 你好嗎
@@ -59,6 +120,64 @@ responses:
   utter_acknowledge_provided_info:
   - text: 感謝您提供您的信息！
   - text: 謝謝您的訊息！
+  utter_ask_1_sell_product:
+  - text: 你想賣什麼產品？
+  utter_ask_2_sell_quantity:
+  - text: 你想賣多少公斤？
+  utter_ask_3_sell_price:
+  - text: 你想賣多少錢一公斤？
+  utter_ask_4_self_made:
+  - text: 你自己做這個產品嗎？
+  utter_submit_sell:
+  - text: 全部完成！
+  utter_slots_values_sell:
+  - custom:
+      price: '{3_sell_price}'
+      product: '{1_sell_product}'
+      quantity: '{2_sell_quantity}'
+      self_made: '{4_self_made}'
+  utter_ask_1_buy_product:
+  - text: 您想購買哪種產品？
+  utter_ask_2_buy_quantity:
+  - text: 你要買多少公斤？
+  utter_ask_3_buy_price:
+  - text: 您要購買的每公斤最高價格是多少？
+  utter_submit_buy:
+  - text: 全部完成！
+  utter_slots_values_buy:
+  - custom:
+      price: '{3_buy_price}'
+      product: '{1_buy_product}'
+      quantity: '{2_buy_quantity}'
 actions: []
-forms: {}
+forms:
+  selling_form:
+    required_slots:
+      1_sell_product:
+      - entity: product
+        type: from_entity
+      2_sell_quantity:
+      - entity: number
+        type: from_entity
+      3_sell_price:
+      - entity: number
+        type: from_entity
+      4_self_made:
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+  buying_form:
+    required_slots:
+      1_buy_product:
+      - entity: product
+        type: from_entity
+      2_buy_quantity:
+      - entity: number
+        type: from_entity
+      3_buy_price:
+      - entity: number
+        type: from_entity
 e2e_actions: []

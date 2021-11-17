@@ -66,6 +66,9 @@ nlu:
     - I have some [carrot](product) to buy
     - can you help me to buy?
 
+
+
+
 - intent: inform
   examples: |
     - [cabbage](product)

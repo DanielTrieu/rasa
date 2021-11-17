@@ -29,25 +29,14 @@ nlu:
     - 很不錯
     - 很完美
     - 今天天氣真好
-- intent: order
-  examples: |
-    - 我想订一些白菜
-    - 我想要訂購
-    - 我需要訂購
-    - 我想要買一些菜
-    - 想要訂購
-    - 我想訂一些地瓜
-    - 我想買白菜
-    - 我想要訂購東西
-    - 我想要訂東西
 - intent: supply_contact_info
   examples: |
     - 我叫[李明華](name), 我的電子信箱是 [hua@gmail.com](email)
     - 我是王小明，我的email是example@gmail.com
-    - 我的電話是[ 0912345678](phone number)
-    - 我的手機是[0912345678](phone number)
-    - 我的email是[123](phone number)@gmail.com
-    - 我的電話是[091112324](phone number)
+    - 我的電話是[ 0912345678](phone_number)
+    - 我的手機是[0912345678](phone_number)
+    - 我的email是[123](phone_number)@gmail.com
+    - 我的電話是[091112324](phone_number)
     - 我的email是
     - 我的電話是
 - intent: order_detail
@@ -112,3 +101,22 @@ nlu:
     - 沒關係，先不用
     - 不需要
     - 不行
+- intent: request_selling
+  examples: |
+    - 我想賣些蔬菜。
+    - 我想賣[蘿蔔](product)
+    - 你能幫我賣嗎？
+    - 我想賣點東西
+- intent: request_buying
+  examples: |
+    - 我想订一些白菜
+    - 我想要訂購
+    - 我需要訂購
+    - 我想要買一些菜
+    - 想要訂購
+    - 我想訂一些地瓜
+    - 我想買白菜
+    - 我想要訂購東西
+    - 我想要訂東西
+    - 我想買些蔬菜
+    - 我要買[蘿蔔](product)

@@ -39,3 +39,26 @@ stories:
   - intent: supply_contact_info
   - intent: order
   - action: utter_ask_for_contact_info
+- story: Story from Conversation ID c8fc48c521184ccdb60110fe0aec204b
+  steps:
+  - intent: request_selling
+  - action: selling_form
+  - active_loop: selling_form
+  - slot_was_set:
+    - requested_slot: sell_product
+  - intent: request_buying
+  - action: buying_form
+  - active_loop: buying_form
+  - slot_was_set:
+    - requested_slot: buy_product
+  - intent: restart
+  - action: action_restart
+  - intent: greet
+  - action: utter_greet
+  - intent: request_selling
+  - action: selling_form
+  - active_loop: selling_form
+  - slot_was_set:
+    - requested_slot: sell_product
+  - intent: greet
+  - action: utter_greet
